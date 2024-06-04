@@ -14,7 +14,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo '03 Deploy'
+                echo 'Deploying'
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding', 
+                    credentialsId: 'jenkins_user',
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+                    sh(scriot: 'aws s3 cp /var/lib/jenkins/workspace/pipeLine/index.html s3://deploybucket20240604')
+                }
             }
         }
         stage('Test') {
