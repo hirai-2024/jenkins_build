@@ -20,7 +20,7 @@ pipeline {
                     credentialsId: 'jenkins_user',
                     accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
-                    sh(scriot: 'aws s3 cp /var/lib/jenkins/workspace/pipeLine/index.html s3://deploybucket20240604')
+                    sh[scriot: 'aws s3 cp /var/lib/jenkins/workspace/pipeLine/index.html s3://deploybucket20240604']
                 }
             }
         }
